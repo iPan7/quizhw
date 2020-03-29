@@ -6,6 +6,7 @@ const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
@@ -15,7 +16,7 @@ const scoreDiv = document.getElementById("scoreContainer");
 let questions = [
     {
         question: "Princess Daisy from the Super Mario franchise is the princess of which land?",
-        imgSrc : "img/html.png",
+        imgSrc : "Assets/img/Daisy.png",
         choiceA : "The Mushroom Kingdom",
         choiceB : "Lorule",
         choiceC : "Sarasaland",
@@ -24,7 +25,7 @@ let questions = [
     },
     {
         question: "In Call of Duty 4: Modern Warfare, what is the name of the character you play as during the mission 'All Ghillied Up'?",
-        imgSrc : "img/html.png",
+        imgSrc : "Assets/img/ghilliedup.jpg",
         choiceA : "John Price",
         choiceB : "Soap Mactavish",
         choiceC : "Simon Riley",
@@ -33,7 +34,7 @@ let questions = [
     },
     {
         question: "In the Star Wars universe, who was responsible for the invention of the TIE fighter?",
-        imgSrc : "img/html.png",
+        imgSrc : "Assets/img/TIE.jpg",
         choiceA : "Ailyn Vel",
         choiceB : "Cara Dune",
         choiceC : "Moff Tarkin",
@@ -42,7 +43,7 @@ let questions = [
     },
     {
         question: "Who was the main pilot of the Normandy SR2 in Mass Effect 2 and 3?",
-        imgSrc : "img/html.png",
+        imgSrc : 'Assets/img/SR2.jpg',
         choiceA : "Jacob Taylor",
         choiceB : "Jeff Moreau",
         choiceC : "Rupert Gardner",
@@ -57,7 +58,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 10; // 10s
+const questionTime = 1000; // 60s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -72,6 +73,7 @@ function renderQuestion(){
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
 }
 
 start.addEventListener("click",startQuiz);
@@ -101,7 +103,6 @@ function renderCounter(){
         timeGauge.style.width = count * gaugeUnit + "px";
         count++
     }else{
-        count = 0;
         // change progress color to red
         answerIsWrong();
         if(runningQuestion < lastQuestion){
@@ -128,7 +129,6 @@ function checkAnswer(answer){
         // change progress color to red
         answerIsWrong();
     }
-    count = 0;
     if(runningQuestion < lastQuestion){
         runningQuestion++;
         renderQuestion();
@@ -157,11 +157,11 @@ function scoreRender(){
     const scorePerCent = Math.round(100 * score/questions.length);
     
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "img/5.png" :
-              (scorePerCent >= 60) ? "img/4.png" :
-              (scorePerCent >= 40) ? "img/3.png" :
-              (scorePerCent >= 20) ? "img/2.png" :
-              "img/1.png";
+    let img = (scorePerCent >= 80) ? "Assets/img/5.png" :
+              (scorePerCent >= 60) ? "Assets/img/4.png" :
+              (scorePerCent >= 40) ? "Assets/img/3.png" :
+              (scorePerCent >= 20) ? "Assets/img/2.png" :
+              "Assets/img/1.png";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
