@@ -24,6 +24,15 @@ let questions = [
         correct : "C"
     },
     {
+        question: "Before becoming a plumber, what was Mario's original profession?",
+        imgSrc : "Assets/img/Daisy.jpg",
+        choiceA : "Carpenter",
+        choiceB : "Doctor",
+        choiceC : "He was always a Plumber",
+        choiceD : "Butler",
+        correct : "A"
+    },
+    {
         question: "In Call of Duty 4: Modern Warfare, what is the name of the character you play as during the mission 'All Ghillied Up'?",
         imgSrc : "Assets/img/ghilliedup.jpg",
         choiceA : "John Price",
@@ -31,6 +40,15 @@ let questions = [
         choiceC : "Simon Riley",
         choiceD : "Yuri",
         correct : "A"
+    },
+    {
+        question: "Who composed the soundtrack for Modern Warfare 2?",
+        imgSrc : "Assets/img/ghilliedup.jpg",
+        choiceA : "Jeremy Soule",
+        choiceB : "Martin O'Donnell",
+        choiceC : "Hans Zimmer",
+        choiceD : "James Hannigan",
+        correct : "C"
     },
     {
         question: "In the Star Wars universe, who was responsible for the invention of the TIE fighter?",
@@ -42,6 +60,15 @@ let questions = [
         correct : "D"
     },
     {
+        question: "In the Star Wars universe, CT-1409 refers to which clone trooper?",
+        imgSrc : "Assets/img/TIE.jpg",
+        choiceA : "Rex",
+        choiceB : "Fives",
+        choiceC : "Cody",
+        choiceD : "Echo",
+        correct : "D"
+    },
+    {
         question: "Who was the main pilot of the Normandy SR2 in Mass Effect 2 and 3?",
         imgSrc : 'Assets/img/SR2.jpg',
         choiceA : "Jacob Taylor",
@@ -49,6 +76,15 @@ let questions = [
         choiceC : "Rupert Gardner",
         choiceD : "Simo Hayha",
         correct : "B"
+    },
+    {
+        question: "Before founding Cerberus, what was the name of the 'Illusive Man' from the Mass Effect universe?",
+        imgSrc : 'Assets/img/SR2.jpg',
+        choiceA : "Jack Harper",
+        choiceB : "Nirali Bhatia",
+        choiceC : "Alvin Lessete",
+        choiceD : "Aaron Bates",
+        correct : "A"
     },
 ];
 
@@ -58,7 +94,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 60; // 60s
+const questionTime = 100; // 100s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -69,7 +105,6 @@ var highScores;
 
 
 // Leaderboard
-// setleaderboard();
 setBoard();
 
 // render a question
@@ -124,7 +159,7 @@ function renderCounter(){
     }
 }
 
-// checkAnwer
+// checkAnswer
 
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
