@@ -8,6 +8,9 @@
 <body>
     <div id="container">
         <div id="start">Start Quiz!</div>
+        <div id="leaderboard">High Score
+            <p id="first"></p>
+        </div>
         <div id="quiz" style="display: none">
             <div id="question"></div>
             <div id="qImg"></div>
@@ -24,7 +27,33 @@
             </div>
             <div id="progress"></div>
         </div>
-        <div id="scoreContainer" style="display: none"></div>
+        <div id="scoreContainer">
+            <img id="scoreimg" src="">
+            <p><span id="scorenumber"></span>%</p>
+            <div class="container">
+                <div id="end" class="flex-center flex-column">
+                  <h1 id="finalScore"></h1>
+                  <form>
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      placeholder="enter name to save high score"
+                    />
+                    <button
+                      type="submit"
+                      class="btn"
+                      id="saveScoreBtn"
+                      onclick="saveHighScore(event)"
+                    >
+                      Save
+                    </button>
+                  </form>
+                  <a class="btn" href="index.html">Play Again</a>
+                </div>
+              </div>
+              
+        </div>
     </div>
     <script src="./Assets/script.js"></script>
 </body>

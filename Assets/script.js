@@ -62,7 +62,11 @@ const questionTime = 1000; // 60s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
-let score = 0;
+var score = 0;
+
+
+// Leaderboard
+setleaderboard();
 
 // render a question
 function renderQuestion(){
@@ -154,36 +158,77 @@ function scoreRender(){
     scoreDiv.style.display = "block";
     
     // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score/questions.length);
-    
+    const scorePercent = Math.round(100 * score/questions.length);
+    score = scorePercent;
+
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "Assets/img/5.png" :
-              (scorePerCent >= 60) ? "Assets/img/4.png" :
-              (scorePerCent >= 40) ? "Assets/img/3.png" :
-              (scorePerCent >= 20) ? "Assets/img/2.png" :
+    let img = (scorePercent >= 80) ? "Assets/img/5.png" :
+              (scorePercent >= 60) ? "Assets/img/4.png" :
+              (scorePercent >= 40) ? "Assets/img/3.png" :
+              (scorePercent >= 20) ? "Assets/img/2.png" :
               "Assets/img/1.png";
-    
-    scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+
+var scoreimg = document.getElementById("scoreimg");
+var scorenumber = document.getElementById("scorenumber");
+scorenumber.innerHTML = scorePercent;
+scoreimg.src = img;
+
 }
 
 
+function saveHighScore(event){
+    let username = document.getElementById("username").value;
+    alert(username + " highscoresaved! " + score + "%");
+    if (localStorage.getItem("highscore") == null){
+        localStorage.setItem("username", username);
+        localStorage.setItem("highscore", score);    
+    }
 
+    else if (localStorage.highscore < score){
+        localStorage.setItem("username", username);
+        localStorage.setItem("highscore", score);    
+    }
+}
 
+function setleaderboard(){
+    let firstplace = document.getElementById("first");
+    if (localStorage.username){
+        firstplace.innerHTML=localStorage.username+": " + localStorage.highscore + "%";
+    }
+    else{
+        firstplace.innerHTML="No high score recorded.";
+    }
+}
 
+// //saving scores
 
+// const username = document.getElementById("username");
+// const saveScoreBtn = document.getElementById("saveScoreBtn");
+// const finalScore = document.getElementById("finalScore");
+// const mostRecentScore = localStorage.getItem("mostRecentScore");
 
+// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
+// const MAX_HIGH_SCORES = 5;
 
+// finalScore.innerText = mostRecentScore;
 
+// username.addEventListener("keyup", () => {
+//   saveScoreBtn.disabled = !username.value;
+// });
 
+// saveHighScore = e => {
+//   console.log("clicked the save button!");
+//   e.preventDefault();
 
+//   const score = {
+//     score: Math.floor(Math.random() * 100),
+//     name: username.value
+//   };
+//   highScores.push(score);
+//   highScores.sort((a, b) => b.score - a.score);
+//   highScores.splice(5);
 
-
-
-
-
-
-
-
-
+//   localStorage.setItem("highScores", JSON.stringify(highScores));
+//   window.location.assign("/");
+// };
