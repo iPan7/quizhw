@@ -25,7 +25,7 @@ let questions = [
     },
     {
         question: "Before becoming a plumber, what was Mario's original profession?",
-        imgSrc : "Assets/img/Daisy.jpg",
+        imgSrc : "Assets/img/mario.jpg",
         choiceA : "Carpenter",
         choiceB : "Doctor",
         choiceC : "He was always a Plumber",
@@ -43,7 +43,7 @@ let questions = [
     },
     {
         question: "Who composed the soundtrack for Modern Warfare 2?",
-        imgSrc : "Assets/img/ghilliedup.jpg",
+        imgSrc : "Assets/img/mw2.jpg",
         choiceA : "Jeremy Soule",
         choiceB : "Martin O'Donnell",
         choiceC : "Hans Zimmer",
@@ -61,7 +61,7 @@ let questions = [
     },
     {
         question: "In the Star Wars universe, CT-1409 refers to which clone trooper?",
-        imgSrc : "Assets/img/TIE.jpg",
+        imgSrc : "Assets/img/arc.jpg",
         choiceA : "Rex",
         choiceB : "Fives",
         choiceC : "Cody",
@@ -79,7 +79,7 @@ let questions = [
     },
     {
         question: "Before founding Cerberus, what was the name of the 'Illusive Man' from the Mass Effect universe?",
-        imgSrc : 'Assets/img/SR2.jpg',
+        imgSrc : 'Assets/img/im.png',
         choiceA : "Jack Harper",
         choiceB : "Nirali Bhatia",
         choiceC : "Alvin Lessete",
