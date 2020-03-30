@@ -16,7 +16,7 @@ const scoreDiv = document.getElementById("scoreContainer");
 let questions = [
     {
         question: "Princess Daisy from the Super Mario franchise is the princess of which land?",
-        imgSrc : "Assets/img/Daisy.png",
+        imgSrc : "Assets/img/Daisy.jpg",
         choiceA : "The Mushroom Kingdom",
         choiceB : "Lorule",
         choiceC : "Sarasaland",
@@ -179,16 +179,6 @@ scoreimg.src = img;
 
 }
 
-// function setleaderboard(){
-//     let firstplace = document.getElementById("first");
-//     if (localStorage.username){
-//         firstplace.innerHTML=localStorage.username+": " + localStorage.highscore + "%";
-//     }
-//     else{
-//         firstplace.innerHTML="No high score recorded.";
-//     }
-// }
-
 function setBoard(){
     console.log("board is set");
     highScores = JSON.parse(localStorage.getItem("highScores")) || []; 
@@ -199,7 +189,7 @@ function setBoard(){
     }
     for(let i=0; i<highScores.length; i++){
         console.log(highScores[i]);
-        b.innerHTML += "<li> " + highScores[i].name + ": "+ highScores[i].score2 + "</li>"
+        b.innerHTML += "<li> " + highScores[i].name + ": "+ highScores[i].score2 + "%</li>"
     }
 }
 
@@ -217,20 +207,6 @@ function saveHighScore(e){
     highScores.splice(MAX_HIGH_SCORES);
   
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    alert(highScores);
+    alert("Score Saved!");
     document.getElementById("saveScoreBtn").disabled = true;
-  //   window.location.assign("/");
   }
-
-// //saving scores
-
-// const username = document.getElementById("username");
-// const saveScoreBtn = document.getElementById("saveScoreBtn");
-// const finalScore = document.getElementById("finalScore");
-// const mostRecentScore = localStorage.getItem("mostRecentScore");
-
-// finalScore.innerText = mostRecentScore;
-
-// username.addEventListener("keyup", () => {
-//   saveScoreBtn.disabled = !username.value;
-// });
