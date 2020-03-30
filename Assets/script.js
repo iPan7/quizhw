@@ -64,9 +64,13 @@ const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 var score = 0;
 
+const MAX_HIGH_SCORES = 5;
+var highScores;
+
 
 // Leaderboard
-setleaderboard();
+// setleaderboard();
+setBoard();
 
 // render a question
 function renderQuestion(){
@@ -175,30 +179,48 @@ scoreimg.src = img;
 
 }
 
+// function setleaderboard(){
+//     let firstplace = document.getElementById("first");
+//     if (localStorage.username){
+//         firstplace.innerHTML=localStorage.username+": " + localStorage.highscore + "%";
+//     }
+//     else{
+//         firstplace.innerHTML="No high score recorded.";
+//     }
+// }
 
-function saveHighScore(event){
+function setBoard(){
+    console.log("board is set");
+    highScores = JSON.parse(localStorage.getItem("highScores")) || []; 
+    let b = document.getElementById("rankings");
+    if(localStorage.getItem("highScores") == null){
+        console.log("no high scores found");
+        return;
+    }
+    for(let i=0; i<highScores.length; i++){
+        console.log(highScores[i]);
+        b.innerHTML += "<li> " + highScores[i].name + ": "+ highScores[i].score2 + "</li>"
+    }
+}
+
+function saveHighScore(e){
+    e.preventDefault();
     let username = document.getElementById("username").value;
-    alert(username + " highscoresaved! " + score + "%");
-    if (localStorage.getItem("highscore") == null){
-        localStorage.setItem("username", username);
-        localStorage.setItem("highscore", score);    
-    }
-
-    else if (localStorage.highscore < score){
-        localStorage.setItem("username", username);
-        localStorage.setItem("highscore", score);    
-    }
-}
-
-function setleaderboard(){
-    let firstplace = document.getElementById("first");
-    if (localStorage.username){
-        firstplace.innerHTML=localStorage.username+": " + localStorage.highscore + "%";
-    }
-    else{
-        firstplace.innerHTML="No high score recorded.";
-    }
-}
+    let myscore = score;
+    console.log(myscore);
+    const score2 = {
+      score2: myscore,
+      name: username
+    };
+    highScores.push(score2);
+    highScores.sort((a, b) => b.score2 - a.score2);
+    highScores.splice(MAX_HIGH_SCORES);
+  
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    alert(highScores);
+    document.getElementById("saveScoreBtn").disabled = true;
+  //   window.location.assign("/");
+  }
 
 // //saving scores
 
@@ -207,28 +229,8 @@ function setleaderboard(){
 // const finalScore = document.getElementById("finalScore");
 // const mostRecentScore = localStorage.getItem("mostRecentScore");
 
-// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-// const MAX_HIGH_SCORES = 5;
-
 // finalScore.innerText = mostRecentScore;
 
 // username.addEventListener("keyup", () => {
 //   saveScoreBtn.disabled = !username.value;
 // });
-
-// saveHighScore = e => {
-//   console.log("clicked the save button!");
-//   e.preventDefault();
-
-//   const score = {
-//     score: Math.floor(Math.random() * 100),
-//     name: username.value
-//   };
-//   highScores.push(score);
-//   highScores.sort((a, b) => b.score - a.score);
-//   highScores.splice(5);
-
-//   localStorage.setItem("highScores", JSON.stringify(highScores));
-//   window.location.assign("/");
-// };
